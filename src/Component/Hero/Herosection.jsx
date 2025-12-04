@@ -1,17 +1,17 @@
 import React from "react";
 import { GiNinjaStar } from "react-icons/gi";
+import { Link } from "react-router-dom";
 function Herosection() {
   const skills = [
-    "React Js",
-    "Node Js",
-    "JavaScript",
-    "Tailwind Css",
-    "UI/UX",
-    "DBMS",
+    { label: "React Js", path: "/React" },
+    { label: "Node Js", path: "/Node" },
+    { label: "JavaScript", path: "/JS" },
+    { label: "Tailwind Css", path: "/Tailwind" },
+    { label: "UI/UX", path: "/UI" },
+    { label: "DBMS", path: "/DBMS" },
   ];
   return (
-    <div className="mt-5 bg-white/10 flex flex-row gap-4 px-6">
-      
+    <div className="mt-5 bg-white/10 flex flex-row gap-4 px-6">    
       {/* LEFT SIDE */}
       <div className="w-2/3 flex flex-col gap-4">
         {/* TOP BIG CARD */}
@@ -29,22 +29,25 @@ function Herosection() {
           </p>
 
           <div className="flex gap-3 mt-4 ml-2 flex-wrap">
-            {skills.map((skill) => (
-              <span
-                key={skill}
-                className="
-                  px-3 py-1 bg-white text-gray-700 rounded-full text-sm shadow-md
-                  transition-all duration-300 cursor-pointer
-                  hover:bg-black hover:text-white hover:scale-110 hover:shadow-xl
-                "
-              >
-                {skill}
-              </span>
+            {skills.map(({ label, path }) => (
+              <Link key={label} to={path}>
+                <span
+                  className="
+                    px-3 py-1 bg-white text-gray-700 rounded-full text-sm shadow-md
+                    transition-all duration-300 cursor-pointer
+                    hover:bg-black hover:text-white hover:scale-110 hover:shadow-xl
+                  "
+                >
+                  {label}
+                </span>
+              </Link>
             ))}
           </div>
+          <Link to='/About'>
           <button className="mt-6 ml-2 text-gray-800 font-medium hover:underline hover:tracking-wide transition-all">
             Know More →
           </button>
+          </Link>
         </div>
 
         {/* BOTTOM TWO CARDS */}

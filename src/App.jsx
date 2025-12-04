@@ -4,6 +4,13 @@ import Navbar from './Component/Navbar/Navbar';
 import { useUser } from './Context/Context';
 import FirstBack from './Component/FirstPage/FirstBack';
 import Herosection from './Component/Hero/Herosection';
+import Aboutmetwo from './Pages/Aboutmetwo';
+import ReactSkill from './Pages/Skills/React';
+import Node from './Pages/Skills/Node';
+import Ui from './Pages/Skills/Ui';
+import Dbms from './Pages/Skills/Dbms';
+import JS from './Pages/Skills/JS';
+import Tailwindcss from './Pages/Skills/Tailwindcss';
 
 function App() {
   const { greetings, showIntro, setShowIntro } = useUser();
@@ -33,6 +40,14 @@ function App() {
             path="/"
             element={showIntro ? <FirstBack /> : <Herosection />}
           />
+          <Route path='/About' element={<Aboutmetwo/>}/>
+          <Route path='/React' element={<ReactSkill/>}/>
+          <Route path='/Node' element={<Node/>}/>
+          <Route path='/UI' element={<Ui/>}/>
+          <Route path='/DBMS' element={<Dbms/>}/>
+          <Route path='/JS' element={<JS/>}/>
+          <Route path='/Tailwind' element={<Tailwindcss/>}/>
+
         </Routes>
       </BrowserRouter>
     </div>
