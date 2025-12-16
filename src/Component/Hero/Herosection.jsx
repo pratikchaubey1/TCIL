@@ -30,6 +30,11 @@ const techIcons = {
 function Herosection() {
   const skills = [
     {
+      label: "JavaScript",
+      path: "/JS",
+      icon: <SiJavascript className="text-yellow-500" />,
+    },
+    {
       label: "React Js",
       path: "/React",
       icon: <FaReact className="text-cyan-500" />,
@@ -39,11 +44,7 @@ function Herosection() {
       path: "/Node",
       icon: <FaNodeJs className="text-green-600" />,
     },
-    {
-      label: "JavaScript",
-      path: "/JS",
-      icon: <SiJavascript className="text-yellow-500" />,
-    },
+    
     {
       label: "Tailwind Css",
       path: "/Tailwind",
@@ -80,12 +81,34 @@ function Herosection() {
       tag: "Full AI Function",
       description:
         "An AI-powered exam preparation platform that uses Gemini to generate practice questions and create personalized daily study schedules, helping students stay consistent and exam-ready.",
-      tech: ["MongoDB", "Express", "React", "Gemini"],
+      tech: ["React","Express", "Tailwind" ,"MongoDB",  "Gemini"],
       repo: "https://github.com/your-username/learning-web",
       // live: "https://your-learning-web-live-link.com", // (optional)
     },
+    {
+      title: "Life Spark",
+      tag: "MLM",
+      description:
+        "Life Spark is a modern MLM (Multi-Level Marketing) platform designed to empower individuals with sustainable income opportunities and long-term growth.",
+      tech: ["React","Express","Tailwind" ,"MongoDB",   ],
+      repo: "https://github.com/pratikchaubey1/LifeSpark_Only",
+      live: "http://31.97.73.66/", // (optional)
+    },
   ];
-
+   
+   const UnComingProject = [
+    {
+      title: "Biopic Studio",
+      description: "A modern studio website showcasing biopic films, creative works, team profiles and cinematic storytelling with smooth UI.",
+       tech: ["React","Express","Tailwind" ,"MongoDB",   ],
+    },
+    {
+     title: "Product Base Project",
+    description:
+      "A scalable product-based web application focused on performance, clean architecture and real-world business use cases.",
+       tech: ["React","Express","Tailwind" ,"MongoDB",   ],
+  },
+  ]
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -142,9 +165,12 @@ function Herosection() {
 
         {/* Bottom Cards */}
         <div className="flex flex-row gap-4">
-          <motion.div className="bg-gray-100 shadow-md w-1/2 h-[360px] rounded-3xl" />
-          <motion.div className="bg-gray-100 shadow-md w-1/2 h-[360px] rounded-3xl" />
+          <motion.div className="bg-gray-100 shadow-md w-1/2 h-[360px] rounded-3xl" >
+          </motion.div>
+
+          <motion.div className="bg-gray-100 shadow-md w-1/2 h-[360px] rounded-3xl" ></motion.div>
         </div>
+        
       </div>
 
       {/* RIGHT SIDE - FIXED COLOR CARD */}
