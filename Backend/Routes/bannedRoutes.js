@@ -5,7 +5,7 @@ const {
   addBannedSupplier,
   getBannedSuppliers,
   unbanSupplier,
-} = require("../controllers/bannedController");
+} = require("../Controllers/bannedController"); 
 
 router.get("/test", (req, res) => {
   res.send("Banned Supplier API Running");

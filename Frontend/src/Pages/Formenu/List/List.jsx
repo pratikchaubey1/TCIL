@@ -9,7 +9,8 @@ function List() {
 
   const [formData, setFormData] = useState({
     supplierName: "",
-    bannedDate: new Date().toISOString().split("T")[0], // AUTO TODAY
+    supplierAddress: "",
+    bannedDate: new Date().toISOString().split("T")[0],
     bannedBy: "",
     banningPeriod: "",
     remarks: "",
@@ -42,6 +43,7 @@ function List() {
       setShowForm(false);
       setFormData({
         supplierName: "",
+        supplierAddress: "",
         bannedDate: new Date().toISOString().split("T")[0],
         bannedBy: "",
         banningPeriod: "",
@@ -56,93 +58,73 @@ function List() {
     }
   };
 
-  const menu = [
-    { id: 1, Name: "Home", path: "/" },
-    { id: 2, Name: "Tender", path: "/tender" },
-    { id: 3, Name: "List of banned Suppliers", path: "/list" },
-  ];
-
   return (
-    <div className="p-10 mt-20">
-      {/* Breadcrumb */}
-      <div className="bg-gray-300 px-2  py-3">
-        <nav className="text-md text-gray-700 flex items-center gap-2">
-          {menu.map((item, index) => (
-            <span key={item.id} className="flex items-center gap-2">
-              <Link
-                to={item.path}
-                className={`hover:underline ${
-                  index === 0 ? "text-blue-600" : "text-gray-800"
-                }`}
-              >
-                {item.Name}
-              </Link>
-
-              {index < menu.length - 1 && <span>/</span>}
-            </span>
-          ))}
-        </nav>
-      </div>
+    <div className="p-10">
       <button
         onClick={() => setShowForm(true)}
-        className="bg-green-600 hover:bg-green-700 text-white translate-x-420 px-5 mt-10 py-4 rounded-2xl "
+        className="bg-green-600 text-white px-5 py-3 rounded-lg mb-6"
       >
         + Add Supplier
       </button>
-   <div className="mt-10 border border-gray-300 rounded-md overflow-hidden bg-white">
 
-  {/* Header */}
-  <div className="grid grid-cols-4 bg-green-500 text-black font-semibold text-sm">
-    <div className="p-4">BANNED SUPPLIER</div>
-    <div className="p-4">BANNED DATE</div>
-    <div className="p-4">BANNED BY</div>
-    <div className="p-4">BANNING PERIOD</div>
-  </div>
+      {/* TABLE */}
+      <div className="border rounded bg-white">
+        <div className="grid grid-cols-4 bg-green-500 font-semibold">
+          <div className="p-3">SUPPLIER</div>
+          <div className="p-3">BANNED DATE</div>
+          <div className="p-3">BANNED BY</div>
+          <div className="p-3">PERIOD</div>
+        </div>
 
-  {/* Rows */}
-  {suppliers.map((s, i) => (
-    <div
-      key={s._id}
-      className="grid grid-cols-4 border-b hover:bg-gray-100 transition"
-    >
-      {/* Supplier */}
-      <div className="p-4 text-blue-600 text-sm leading-6">
-        <span className="font-medium text-black mr-1">{i + 1}.</span>
-        <span className="hover:underline cursor-pointer">
-          {s.supplierName}
-        </span>
+        {suppliers.map((s, i) => (
+          <div className="grid grid-cols-4 border-b">
+            {/* SUPPLIER COLUMN */}
+            <div className="p-3">
+              <div className="font-medium text-blue-500 hover:text-blue-600">
+                {i + 1}. {s.supplierName}
+              </div>
+
+              <div className="text-sm  text-blue-500 hover:text-blue-600 mt-1">
+                {s.supplierAddress}
+              </div>
+            </div>
+
+            {/* DATE */}
+            <div className="p-3">
+              {new Date(s.bannedDate).toLocaleDateString()}
+            </div>
+
+            {/* BANNED BY */}
+            <div className="p-3">{s.bannedBy}</div>
+
+            {/* PERIOD */}
+            <div className="p-3">{s.banningPeriod} Days</div>
+          </div>
+        ))}
       </div>
 
-      {/* Date */}
-      <div className="p-4 text-sm text-gray-800">
-        {new Date(s.bannedDate).toLocaleDateString("en-GB", {
-          day: "2-digit",
-          month: "long",
-          year: "numeric",
-        })}
-      </div>
-
-      {/* Banned By */}
-      <div className="p-4 text-sm text-gray-800">
-        {s.bannedBy}
-      </div>
-
-      {/* Period */}
-      <div className="p-4 text-sm text-gray-800 font-medium">
-        {s.banningPeriod} Years
-      </div>
-    </div>
-  ))}
-</div>
-
+      {/* MODAL */}
       {showForm && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center">
-          <form onSubmit={handleSubmit} className="bg-white p-6 w-[400px]">
+          <form
+            onSubmit={handleSubmit}
+            className="bg-white p-6 w-[400px] rounded"
+          >
             <input
               name="supplierName"
               value={formData.supplierName}
               onChange={handleChange}
               placeholder="Supplier Name"
+              className="w-full border p-2 mb-2"
+              required
+            />
+
+            <textarea
+              name="supplierAddress"
+              value={formData.supplierAddress}
+              onChange={handleChange}
+              placeholder="Supplier Address"
+              rows={3}
               className="w-full border p-2 mb-2"
               required
             />
@@ -182,7 +164,7 @@ function List() {
               className="w-full border p-2 mb-4"
             />
 
-            <div className="flex justify-end gap-2">
+            <div className="flex justify-end gap-10">
               <button type="button" onClick={() => setShowForm(false)}>
                 Cancel
               </button>
